@@ -78,23 +78,23 @@
             + VD: 
 -->
 <?php
-    class SucVat{
-        private $name = "Cho";
-        protected $color = "Den";
-        public $size = "123";
+    // class SucVat{
+    //     private $name = "Cho";
+    //     protected $color = "Den";
+    //     public $size = "123";
 
-        public function eat(){
-            echo $this->name.'dang an';
-        }
-    }
+    //     public function eat(){
+    //         echo $this->name.'dang an';
+    //     }
+    // }
 
-    class Dog extends SucVat{
-        public $leg;
+    // class Dog extends SucVat{
+    //     public $leg;
         
-        public function dogEat(){
-            echo $this->eat() . $this->color;
-        }
-    }
+    //     public function dogEat(){
+    //         echo $this->eat() . $this->color;
+    //     }
+    // }
 ?>
 
 
@@ -102,5 +102,104 @@
     - Truy xuất hằng: tên lớp::tên hằng
 -->
 <?php
-echo Dog::PI ;
+// echo Dog::PI ;
+?>
+
+<!-- 
+    Đa hình(Polymorphism): interface không phải là class vì thế chúng cũng không có thuộc tính và phương thức 
+    Interface: là một khuôn mẫu chứa các phương thức mà các lớp khác phải triển khai
+    VD:
+-->
+
+<?php
+interface DiChuyen{
+    public function diChuyen();
+}
+
+class ConNguoi implements DiChuyen{
+    public function diChuyen()
+    {
+        echo 'Con nguoi di bo';
+    }
+}
+
+class OTo implements diChuyen{
+    public function diChuyen()
+    {
+        echo 'Oto dang chay';
+    }
+}
+// interface và abstract đều là bản thiết kế của dự án phần mềm
+// interface là bản thiết kế cho các class có chung hành động(phương thức) nhưng không chung bản chấtchất
+// abstract là bản thiết kế cho các class có chung đặc điểm về bản chất
+// interface có khả năng mở rộng lớn hơn 
+?>
+
+<!-- 
+    Trừu tượng:
+    VD:
+-->
+<?php
+abstract class Animal{
+    abstract public function eat();
+
+    abstract public function diChuyen();
+}
+
+    class Dog extends Animal{
+        public function eat()
+        {
+            echo 'Con cho dang an';
+        }
+
+        public function diChuyen()
+        {
+            echo 'Con cho dang di';
+        }
+    }
+    class Cat extends Animal{
+        public function eat(){
+            echo 'Con meo dang an';
+        }
+        public function diChuyen()
+        {
+            echo 'Con meo dang di';
+        }
+    }
+?>
+
+<!-- 
+            Trait: 
+    Trong PHP chỉ có đơn kế thừa(Trait giúp giải quyết vấn đề này)
+    Trait là 1 tập hợp các phương thức có thể được sử dụng trong các class 
+    VD:
+-->
+<?php
+trait TongHieu{
+    public function tinhTong($a, $b){
+        return $a + $b;
+    }
+    private function tinhHieu($a, $b){
+        return $a - $b;
+    }
+}
+trait TichThuong{
+    public function tinhTich($a, $b){
+        return $a * $b;
+    }
+    protected function tinhThuong($a, $b){
+        return $a / $b;
+    }
+}
+class TinhToan implements diChuyen{
+    use TongHieu, TichThuong;
+    public function tinhTongHieu($a, $b){
+        return $this->tinhTong($a, $b) + $this->tinhHieu($a, $b) + $this->tinhThuong($a, $b);
+    }
+    public function diChuyen()
+    {
+        echo 'Con meo dang di';
+    }
+}
+$tt = new TinhToan();
 ?>
