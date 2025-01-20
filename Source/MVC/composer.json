@@ -2,7 +2,7 @@
     "name": "abc/mvc",
     "autoload": {
         "psr-4": {
-            "Abc\\Mvc\\": "src/"
+            "App\\": "app/"
         }
     },
     "authors": [
@@ -11,5 +11,7 @@
             "email": "truongdoxuan796@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
 }

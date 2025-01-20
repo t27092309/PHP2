@@ -54,11 +54,18 @@ class Product extends Model{
     public function addProduct($id, $tenSP, $gia, $moTa){
         $sql = "INSERT INTO {$this->table} VALUES (?,?,?,?)";
         $this->connection->setSQL($sql);
-        return $this->connection->excute([$id, $tenSP, $gia, $moTa]);
+        return $this->connection->execute([$id, $tenSP, $gia, $moTa]);
     }
     // Sửa
     public function updateProduct($id, $tenSP, $gia, $moTa){
-        $sql = "UPDATE {$this->}"
+        $sql = "UPDATE {$this->table} SET name = ?, price = ?, description = ? WHERE id = ?";
+        $this->connection->setSQL($sql);
+        return $this->connection->execute([$tenSP, $gia, $moTa, $id]);
     }
     // Xóa
+    public function deleteProduct($id){
+        $sql = "DELETE FROM {$this->table} WHERE id = ?";
+        $this->connection->setSQL($sql);
+        return $this->connection->execute([$id]);
+    }
 }
