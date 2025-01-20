@@ -1,0 +1,15 @@
+{
+    "name": "abc/mvc",
+    "autoload": {
+        "psr-4": {
+            "Abc\\Mvc\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "t27092309",
+            "email": "truongdoxuan796@gmail.com"
+        }
+    ],
+    "require": {}
+}
