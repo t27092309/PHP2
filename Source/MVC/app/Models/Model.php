@@ -58,7 +58,7 @@ class Model
             $this->sta = $this->pdo->prepare($this->sql);
             if (!empty($options)) {
                 foreach ($options as $key => $value) {
-                    $this->sta->bindValue($key + 1, $value); // Sử dụng bindValue để tự động xác định kiểu dữ liệu
+                    $this->sta->bindValue($key+1, $value); // Sử dụng bindValue để tự động xác định kiểu dữ liệu
                 }
             }
             $this->sta->execute();

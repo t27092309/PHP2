@@ -47,25 +47,26 @@ class Product extends Model{
     // Truy vấn theo id
     public function getIdProduct($id){
         $sql = "SELECT * FROM {$this->table} WHERE id = ?";
-        $this->connection->first([$id]);
+        $this->connection->setSQL($sql);
+        return $this->connection->first([$id]);
     }
     // Thao tác với CSDL
     // Thêm
-    public function addProduct($id, $tenSP, $gia, $moTa){
-        $sql = "INSERT INTO {$this->table} VALUES (?,?,?,?)";
+    public function addProduct($pro_id, $pro_name, $pro_price, $pro_descr, $pro_img){
+        $sql = "INSERT INTO {$this->table} VALUES (?,?,?,?,?)";
         $this->connection->setSQL($sql);
-        return $this->connection->execute([$id, $tenSP, $gia, $moTa]);
+        return $this->connection->execute([$pro_id, $pro_name, $pro_price, $pro_descr, $pro_img]);
     }
     // Sửa
-    public function updateProduct($id, $tenSP, $gia, $moTa){
-        $sql = "UPDATE {$this->table} SET name = ?, price = ?, description = ? WHERE id = ?";
+    public function updateProduct($pro_id, $pro_name, $pro_price, $pro_descr, $pro_img){
+        $sql = "UPDATE {$this->table} SET name = ?, price = ?, description = ?, image = ? WHERE id = ?";
         $this->connection->setSQL($sql);
-        return $this->connection->execute([$tenSP, $gia, $moTa, $id]);
+        return $this->connection->execute( [$pro_name, $pro_price, $pro_descr, $pro_img, $pro_id ]);
     }
     // Xóa
-    public function deleteProduct($id){
+    public function deleteProduct($pro_id){
         $sql = "DELETE FROM {$this->table} WHERE id = ?";
         $this->connection->setSQL($sql);
-        return $this->connection->execute([$id]);
+        return $this->connection->execute([$pro_id]);
     }
 }
