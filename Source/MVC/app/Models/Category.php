@@ -47,8 +47,8 @@ class Category extends Model{
     // Truy vấn theo id
     public function getIdCategory($id_category){
         $sql = "SELECT * FROM {$this->table} WHERE id_category = ?";
-        $this->connection->first([$id_category]);
-    }
+        $this->connection->setSQL($sql);
+        return $this->connection->first([$id_category]);    }
     // Thao tác với CSDL
     // Thêm
     public function addCategory($id_category, $name_category, $description_category){
