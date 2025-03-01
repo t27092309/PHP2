@@ -1,0 +1,48 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('title', $title); ?>
+<?php $this->startSection('content'); ?>
+ <h1><?php echo \htmlentities($title??'', ENT_QUOTES, 'UTF-8', false); ?></h1>
+ <?php if(isset($_SESSION['errors']) && isset($_GET['msg'])): ?>
+ <div>
+ <ul>
+ <?php $__currentLoopData = $_SESSION['errors']; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $error): $loop = $this->incrementLoopIndices();  ?>
+ <li><?php echo \htmlentities($error??'', ENT_QUOTES, 'UTF-8', false); ?></li>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </ul>
+ </div>
+ <?php endif; ?>
+ <?php if(isset($_SESSION['success']) && isset($_GET['msg'])): ?>
+ <div><?php echo \htmlentities($_SESSION['success']??'', ENT_QUOTES, 'UTF-8', false); ?></div>
+ <?php endif; ?>
+
+ <form action="<?php echo \htmlentities(route('product-updateStore/{id}', ['id' => $data->id])??'', ENT_QUOTES, 'UTF-8', false); ?>" method="post" enctype="multipart/form-data">
+ <div class="mb-3">
+ <label for="category_id">category_id</label>
+ <input type="text" name="category_id" id="" value="<?php echo \htmlentities($data->category_id??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ </div>
+ <div class="mb-3">
+ <label for="name">name</label>
+ <input type="text" name="name" id="" value="<?php echo \htmlentities($data->name??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ </div>
+ <div class="mb-3">
+ <label for="img_thumbnail">img_thumbnail</label>
+ <input type="file" name="img_thumbnail" id="" value="<?php echo \htmlentities($data->img_thumbnail??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ </div>
+ <div class="mb-3">
+ <label for="description">description</label>
+ <input type="text" name="description" id="" value="<?php echo \htmlentities($data->description??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ </div>
+ <div class="mb-3">
+ <label for="updated_at">updated_at</label>
+ <input type="date" name="updated_at" id="" value="<?php echo \htmlentities($data->updated_at??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ </div>
+ <div class="mb-3">
+ <button type="submit">Save</button>
+ </div>
+
+ </form>
+
+<?php $this->stopSection(); ?>
+
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout_admin'); } ?>
